@@ -13,7 +13,11 @@ links = soup.find_all('a' , href=re.compile('episodes/show'))   # finds links wi
 file = open("data.txt", 'wb')
 print('Collecting the links...')
 for link in links:
-    href = link.get('href') + '\n'
-    file.write(href.encode())
+    href = link.get('href') 
+
+    # modifying relative download links to absolute links
+    dl_link = 'https://talkpython.fm/episodes/download' + href[14:] + '.mp3\n'
+    file.write(dl_link.encode())
 file.close()
 print('Saved')
+
